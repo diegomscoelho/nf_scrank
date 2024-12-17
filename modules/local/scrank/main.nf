@@ -26,6 +26,6 @@ process SCRANK {
   script:
     """
     #!/bin/bash
-    Rscript scrank.R '${obj}' '${column}' '${species}' '${target}' 
+    Rscript ${workflow.projectDir}/bin/scrank.R '${obj}' '${column}' '${species}' '${target}' 
     """
 }

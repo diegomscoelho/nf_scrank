@@ -11,8 +11,10 @@ column <- args[2]
 species <- args[3]
 target <- args[4]
 
-if (seuratObj == 'system.file("extdata", "AML_object.rda", package="scRank")') {
-    load(seuratObj)
+print(seuratObj)
+
+if (seuratObj == 'testcase') {
+    load(system.file("extdata", "AML_object.rda", package="scRank"))
 } else {
     seuratObj <- readRDS(seuratObj)
 }
@@ -20,8 +22,8 @@ if (seuratObj == 'system.file("extdata", "AML_object.rda", package="scRank")') {
 
 # Run scRank
 obj <- CreateScRank(input = seuratObj,
-                    species = column, 
-                    cell_type = species,
+                    species = species, 
+                    cell_type = column,
                     target = target)
 obj <- Constr_net(obj)
 obj <- rank_celltype(obj)

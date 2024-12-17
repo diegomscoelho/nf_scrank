@@ -11,8 +11,6 @@ column <- args[2]
 species <- args[3]
 target <- args[4]
 
-print(seuratObj)
-
 if (seuratObj == 'testcase') {
     load(system.file("extdata", "AML_object.rda", package="scRank"))
 } else {

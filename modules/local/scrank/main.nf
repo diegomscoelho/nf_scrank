@@ -12,13 +12,13 @@ process SCRANK {
             'docker.io/diegomscoelho/scrank:v1.0' }"
 
   input:
-    val(obj)
-    val(column)
-    val(species)
-    val(target)
+    path obj
+    val column
+    val species
+    val target
 
   output:
-    path("${species}_${target}.rds")
+    path "${species}_${target}.rds"
 
   when:
   task.ext.when == null || task.ext.when  
@@ -26,6 +26,6 @@ process SCRANK {
   script:
     """
     #!/bin/bash
-    Rscript ${workflow.projectDir}/bin/scrank.R '${obj}' '${column}' '${species}' '${target}' 
+    Rscript ${workflow.projectDir}/bin/scrank.R ${obj} ${column} ${species} ${target} 
     """
 }

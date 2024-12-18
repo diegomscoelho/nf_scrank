@@ -1,6 +1,4 @@
 process SCRANK {
-  scratch true
-  
   """
   Runs an Rscript on Seurat Object
   """

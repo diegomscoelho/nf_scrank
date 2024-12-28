@@ -6,8 +6,8 @@ process SCRANK {
   label 'process_medium'
   label "r_scrank"
 
-  container "${ workflow.containerEngine == 'singularity' ? 'docker://diegomscoelho/scrank:v1.0':
-            'docker.io/diegomscoelho/scrank:v1.0' }"
+  container "${ workflow.containerEngine == 'singularity' ? 'docker://diegomscoelho/scrank:latest':
+            'docker.io/diegomscoelho/scrank:latest' }"
 
   input:
     path obj
@@ -16,7 +16,7 @@ process SCRANK {
     val target
 
   output:
-    path "${species}_${target}.rds"
+    path "*_${species}_${target}*.rds"
 
   when:
   task.ext.when == null || task.ext.when  

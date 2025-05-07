@@ -16,7 +16,12 @@ n_cells <- as.integer(args[5])
 targets <- readLines(targets)
 target <- targets[1]
 
-seuratObj <- readRDS(seuratObj)
+if (seuratObj == 'AML_object.rda') {
+    load(seuratObj)
+    seuratObj <- seuratObj[c(VariableFeatures(seuratObj)[1:200], target),]
+} else {
+    seuratObj <- readRDS(seuratObj)
+}
 
 # Downsample cells by celltype
 downsampled_cells <- seuratObj@meta.data %>% tibble::rowid_to_column("id_cell") %>%

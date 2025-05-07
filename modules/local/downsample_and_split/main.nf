@@ -11,7 +11,7 @@ process DOWNSAMPLE {
 
   input:
     path obj
-    val target
+    path target
     val column
     val species
     val n_cells

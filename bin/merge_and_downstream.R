@@ -7,7 +7,7 @@ library(GENIE3)
 
 args <- commandArgs(trailingOnly = TRUE)
 
-ad <- args[1]
+seuratObj <- args[1]
 targets <- args[2]
 species <- args[3]
 column <- args[4]
@@ -19,7 +19,13 @@ targets <- readLines(targets)
 target <- targets[1]
 
 sc_objs <- lapply(rds_files, readRDS)
-seuratObj <- readRDS(ad)
+
+if (seuratObj == 'AML_object.rda') {
+    load(seuratObj)
+    seuratObj <- seuratObj[c(VariableFeatures(seuratObj)[1:200], target),]
+} else {
+    seuratObj <- readRDS(seuratObj)
+}
 
 obj <- CreateScRank(input = seuratObj,
                     species = species, 

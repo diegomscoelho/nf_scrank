@@ -1,6 +1,6 @@
-process SCRANK {
+process MERGE {
   """
-  Generates WGN based on scRank obj
+  Merge the networks and rank for each target
   """
 
   label "r_scrank"
@@ -9,11 +9,15 @@ process SCRANK {
             'docker.io/juliaapolonio/scrank:latest' }"
 
   input:
-    path scobj
-    val n_cores
+    path obj
+    val target
+    val species
+    val column
+    path rank_obj
 
   output:
-    path "*.rds", emit: rank_obj
+    path "merged_obj.RDS", emit: merged_obj
+    path "*.txt", emit: rank_scores
 
   when:
   task.ext.when == null || task.ext.when  
@@ -21,6 +25,7 @@ process SCRANK {
   script:
     """
     #!/bin/bash
-    run_scrank.R ${scobj} ${n_cores} 
+    merge_and_downstream.R ${obj} ${target} ${species} ${column} ${rank_obj}
     """
 }
+

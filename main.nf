@@ -6,6 +6,8 @@
 
 
 include { SCRANK } from "./modules/local/scrank/main.nf"
+include { DOWNSAMPLE } from "./modules/local/downsample_and_split/main.nf"
+include { MERGE } from "./modules/local/merge_and_downstream/main.nf"
 
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -15,16 +17,26 @@ include { SCRANK } from "./modules/local/scrank/main.nf"
 
 workflow {
 
-    seuObj = file(params.seuObj)
+    obj = file(params.obj)
     column = params.column
     species = params.species
+    n_cells = params.n_cells
+    n_cores = params.n_cores
+    target = file(params.target)
 
-    // Create a channel of genes
-    Channel
-    .fromPath(params.target) // Load the file
-    .flatMap { file -> file.readLines() } // Read lines into individual genes
-    .set { targets } // View each gene
+    DOWNSAMPLE( obj, target, column, species, n_cells )
 
-    SCRANK( seuObj, column, species, targets )
+    DOWNSAMPLE.out.scrank_obj
+    .flatten()
+    .set { sc_obj }
+
+
+    SCRANK( sc_obj, n_cores )
+
+    SCRANK.out.rank_obj
+    .collect()
+    .set { rank_cells  }
+
+    MERGE( obj, target, species, column, rank_cells ) 
 
 }

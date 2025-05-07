@@ -12,12 +12,6 @@ column <- args[3]
 species <- args[4]
 n_cells <- as.integer(args[5])
 
-# seuratObj <- "../scripts/nf_scrank/SEAD_res0.5_dementia_subtype.rds"
-# targets <- c("EGFR", "ACE", "APOE", "LRP6", "ERBB3", "CTSH", "SLC25A18", "C1S", 
-#              "FCGR3B", "CASQ1", "PKN1", "LGALS9", "CA12", "CD33", "LGALS3", "PRSS8")
-# column <- "broad_cell_type"
-# species <- "human"
-# n_cells <- 1000
 
 targets <- readLines(targets)
 target <- targets[1]

@@ -4,11 +4,6 @@ library(scRank)
 library(dplyr)
 library(GENIE3)
 
-# rds_files <- c("/home/jamorim/data/scrank_results/Astrocytes_weight_GENIE3_50.rds", "/home/jamorim/data/scrank_results/Microglia_PVM_weight_GENIE3_500.rds")
-# targets <- c("EGFR", "ACE")
-# ad <- "/home/jamorim/scripts/nf_scrank/SEAD_res0.5_dementia_subtype.rds"
-# column <- "broad_cell_type"
-# species <- "human"
 
 args <- commandArgs(trailingOnly = TRUE)
 

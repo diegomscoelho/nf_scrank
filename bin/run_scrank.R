@@ -10,8 +10,6 @@ seuratObj <- args[1]
 n_cores <- args[2]
 n_cores <- as.integer(n_cores)
 
-# seuratObj <- "/home/jamorim/scripts/nf_scrank/work/ac/ac23e1fff05e4d3d82d6ed28a4581c/Glutamatergic_Neurons.RDS"
-#seuratObj <- "/home/jamorim/data/OPCs.RDS"
 cell_type <- sub(".RDS", "", seuratObj)
 
 sc_obj <- readRDS(seuratObj)

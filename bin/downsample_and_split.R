@@ -18,7 +18,7 @@ target <- targets[1]
 
 if (seuratObj == 'AML_object.rda') {
     load(seuratObj)
-    seuratObj <- seuratObj[c(VariableFeatures(seuratObj)[1:200], target),]
+    seuratObj <- seuratObj[c(VariableFeatures(seuratObj), target),]
 } else {
     seuratObj <- readRDS(seuratObj)
 }

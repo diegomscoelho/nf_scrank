@@ -38,7 +38,7 @@ obj <- CreateScRank(input = seurat_downsample,
                     cell_type = column,
                     target = target)
 
-genes_4_use <- unique(c(obj@para$gene4use), targets)
+genes_4_use <- unique(c(obj@para$gene4use, targets))
 genes_4_use <- setdiff(genes_4_use, non_targets)
 
 split_obj <- SplitObject(seurat_downsample, split.by = column)

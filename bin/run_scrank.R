@@ -14,7 +14,7 @@ cell_type <- sub(".RDS", "", seuratObj)
 
 sc_obj <- readRDS(seuratObj)
 
-weight <- GENIE3(as.matrix(sc_obj@data$seuratObj[sc_obj@para$gene4use]@assays$RNA$counts), nCores = n_cores)
+weight <- GENIE3(as.matrix(sc_obj@data$seuratObj[sc_obj@para$gene4use]@assays$RNA$data), nCores = n_cores)
 weight <- weight[colnames(weight),]
 
 n_cells <- dim(sc_obj@data$seuratObj)[2]

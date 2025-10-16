@@ -49,7 +49,7 @@ for (target_sc in targets) {
   
   # Try running rank_celltype
   tryCatch({
-    obj <- rank_celltype(obj)
+    obj <- rank_celltype(obj, n.core = 4)
     
     # Extract data and convert to long format
     perb_scores <- obj@cell_type_rank$perb_score
